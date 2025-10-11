@@ -11,7 +11,7 @@ const Header = () => {
         <Link href='/'>
           <Image src='/assets/icons/logo.svg' alt='Signallist Logo' width={140} height={32} className='h-8 w-auto cursor-pointer' />
         </Link>
-        <nav>
+        <nav className='hidden sm:block'>
           <NavItems />
         </nav>
         <UserDropdown />
