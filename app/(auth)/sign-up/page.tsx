@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import InputField from "@/components/forms/InputField";
 import SelectField from "@/components/forms/SelectField";
@@ -11,7 +12,7 @@ import {
 } from "@/lib/constants";
 import { CountrySelectField } from "@/components/forms/CountrySelectField";
 import FooterLink from "@/components/forms/FooterLink";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 const SignUp = () => {
   // const router = useRouter();
@@ -44,7 +45,6 @@ const SignUp = () => {
   return (
     <>
       <h1 className="form-title">Sign Up & Personalize</h1>
-
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <InputField
           name="fullName"
@@ -54,7 +54,6 @@ const SignUp = () => {
           error={errors.fullName}
           validation={{ required: "Full name is required", minLength: 2 }}
         />
-
         <InputField
           name="email"
           label="Email"
@@ -67,7 +66,6 @@ const SignUp = () => {
             message: "Email address is required",
           }}
         />
-
         <InputField
           name="password"
           label="Password"
@@ -77,7 +75,6 @@ const SignUp = () => {
           error={errors.password}
           validation={{ required: "Password is required", minLength: 8 }}
         />
-
         <CountrySelectField
           name="country"
           label="Country"
@@ -85,7 +82,6 @@ const SignUp = () => {
           error={errors.country}
           required
         />
-
         <SelectField
           name="investmentGoals"
           label="Investment Goals"
@@ -95,7 +91,6 @@ const SignUp = () => {
           error={errors.investmentGoals}
           required
         />
-
         <SelectField
           name="riskTolerance"
           label="Risk Tolerance"
@@ -105,7 +100,6 @@ const SignUp = () => {
           error={errors.riskTolerance}
           required
         />
-
         <SelectField
           name="preferredIndustry"
           label="Preferred Industry"
@@ -115,7 +109,6 @@ const SignUp = () => {
           error={errors.preferredIndustry}
           required
         />
-
         <Button
           type="submit"
           disabled={isSubmitting}
@@ -123,7 +116,6 @@ const SignUp = () => {
         >
           {isSubmitting ? "Creating Account" : "Start Your Investing Journey"}
         </Button>
-
         <FooterLink
           text="Already have an account?"
           linkText="Sign in"
@@ -133,4 +125,5 @@ const SignUp = () => {
     </>
   );
 };
+
 export default SignUp;
