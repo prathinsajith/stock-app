@@ -5,6 +5,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import InputField from "@/components/forms/InputField";
 import SelectField from "@/components/forms/SelectField";
+import { toast } from "sonner";
 import {
   INVESTMENT_GOALS,
   PREFERRED_INDUSTRIES,
@@ -12,10 +13,11 @@ import {
 } from "@/lib/constants";
 import { CountrySelectField } from "@/components/forms/CountrySelectField";
 import FooterLink from "@/components/forms/FooterLink";
-// import { useRouter } from "next/navigation";
+import { signUpWithEmail } from "@/lib/actions/auth.actions";
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
-  // const router = useRouter();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -36,9 +38,14 @@ const SignUp = () => {
 
   const onSubmit = async (data: SignUpFormData) => {
     try {
-      console.log("Form Data:", data);
+      const result = await signUpWithEmail(data);
+      toast.success("Account created successfully!");
+      if (result.success) {
+        router.push("/");
+      }
     } catch (error) {
       console.error("Sign up failed:", error);
+      toast.error("Sign up failed. Please try again.");
     }
   };
 
@@ -57,7 +64,7 @@ const SignUp = () => {
         <InputField
           name="email"
           label="Email"
-          placeholder="contact@jsmastery.com"
+          placeholder="sprathin007@gmail.com"
           register={register}
           error={errors.email}
           validation={{
